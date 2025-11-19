@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es6",
     "module": "CommonJs",
-    "rootDir": "src",
+    "rootDir": "./",
     "outDir": "dist",
     "baseUrl": "./",
     "removeComments": true,
@@ -13,7 +13,9 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "typeRoots": ["./node_modules/@types"]
+    "typeRoots": ["./node_modules/@types"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
