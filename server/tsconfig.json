@@ -13,7 +13,7 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "typeRoots": ["./node_modules/@types"],
+    "typeRoots": ["./src/types/interfaces"],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
   },
