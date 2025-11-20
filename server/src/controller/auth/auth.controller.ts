@@ -13,7 +13,7 @@ class AuthController {
         }
 
         const {email, password} = req.body;
-        const user = await userService.finUserByEmail(email)
+        const user = await userService.findUserByEmail(email)
         if (!user) return res.status(401).json({errors: userNotFound});
 
         const validPassword = await userService.checkPassword(user, password)

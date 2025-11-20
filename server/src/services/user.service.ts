@@ -5,7 +5,7 @@ import {mailService} from "@/services/mail.service";
 import {RefreshToken} from "@/db/models/refresh-token.model";
 
 class UserService {
-    public finUserByEmail = async (email: string): Promise<User | null> => {
+    public findUserByEmail = async (email: string): Promise<User | null> => {
         const user = await User.findOne({where: {email}})
         return user;
     }
