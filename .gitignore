@@ -1,5 +1,7 @@
 server/.idea
 server/dist
+Client/dist
 server/node_modules
+Client/node_modules
 .idea
 .vscode
