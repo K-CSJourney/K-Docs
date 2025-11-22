@@ -1,9 +1,9 @@
 import useAuth from "@/hooks/use-auth";
-import {FocusEvent, useContext, useRef, useState} from "react";
-import {ToastContext} from "@/contexts/toast-context";
+import { FocusEvent, useContext, useRef, useState } from "react";
+import { ToastContext } from "@/contexts/toast-context";
 import DocumentService from "@/services/dockerment-service";
 import DocumentInterface from "@/types/interfaces/document";
-import {CSSTransition} from "react-transition-group";
+import { CSSTransition } from "react-transition-group";
 
 interface DocumentMenuButtonProps {
     documentId: number;
@@ -11,15 +11,15 @@ interface DocumentMenuButtonProps {
 }
 
 const DocumentMenuButton = ({
-                                documentId,
-                                setDocuments,
-                            }: DocumentMenuButtonProps) => {
-    const {accessToken} = useAuth();
+    documentId,
+    setDocuments,
+}: DocumentMenuButtonProps) => {
+    const { accessToken } = useAuth();
 
     const [loading, setLoading] = useState(false);
     const dropdownRef = useRef(null);
     const [showDropdown, setShowDropdown] = useState(false);
-    const {error} = useContext(ToastContext);
+    const { error } = useContext(ToastContext);
 
     const handleDeleteBtnClick = async () => {
         if (accessToken === null) return;
@@ -83,7 +83,7 @@ const DocumentMenuButton = ({
                         className="absolute top-full mt-1 z-10 w-52 bg-white py-2 rounded-sm shadow-lg border document-menu"
                     >
                         <div
-                            onClick={() => (!loading ? handleDeleteBtnClick() : () => {
+                            onMouseDown={() => (!loading ? handleDeleteBtnClick() : () => {
                             })}
                             className="w-full text-black hover:bg-gray-100 text-sm px-6 py-1 text-left document-menu"
                         >

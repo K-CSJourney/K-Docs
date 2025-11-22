@@ -1,5 +1,5 @@
-import {useContext, MouseEvent} from "react";
-import {ToastContext} from "@/contexts/toast-context";
+import { useContext, MouseEvent, forwardRef } from "react";
+import { ToastContext } from "@/contexts/toast-context";
 import ToastInterface from "@/types/interfaces/toast";
 
 const TOAST_CLASSES = {
@@ -10,7 +10,7 @@ const TOAST_CLASSES = {
     danger: "toast-danger",
 };
 
-const Toast = ({ id, color, title, body, actions }: ToastInterface) => {
+const Toast = forwardRef<HTMLDivElement, ToastInterface>(({ id, color, title, body, actions }, ref) => {
     const { removeToast } = useContext(ToastContext);
 
     const handleToastClick = (e: MouseEvent<HTMLDivElement>) => {
@@ -20,6 +20,7 @@ const Toast = ({ id, color, title, body, actions }: ToastInterface) => {
 
     return (
         <div
+            ref={ref}
             onClick={handleToastClick}
             className={`${TOAST_CLASSES[color]} w-full rounded bg-white dark:bg-slate-700 shadow-md dark:shadow-2xl flex items-stretch text-sm relative cursor-pointer text-primary`}
         >
@@ -42,6 +43,8 @@ const Toast = ({ id, color, title, body, actions }: ToastInterface) => {
             </div>
         </div>
     );
-};
+});
+
+Toast.displayName = "Toast";
 
 export default Toast;

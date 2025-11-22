@@ -1,9 +1,9 @@
 import { CSSTransition } from "react-transition-group";
-import {useContext, useRef, useState} from "react";
+import { useContext, useRef, useState } from "react";
 import useRandomBackground from "@/hooks/use-random-background";
-import {ToastContext} from "@/contexts/toast-context";
+import { ToastContext } from "@/contexts/toast-context";
 import useAuth from "@/hooks/use-auth";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const UserDropDown = () => {
     const [showDropDown, setShowDropDown] = useState(false);
@@ -39,7 +39,7 @@ const UserDropDown = () => {
                         className="absolute top-full mt-1 right-0 z-10 w-52 bg-white py-2 rounded-sm shadow-lg border"
                     >
                         <button
-                            onClick={logoutUser}
+                            onMouseDown={logoutUser}
                             className="w-full text-black hover:bg-gray-100 text-sm px-6 py-1 text-left"
                         >
                             Logout

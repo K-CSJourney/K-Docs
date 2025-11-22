@@ -9,7 +9,7 @@ import {DocumentUser} from "@/db/models/document-user.model";
         include: [
             {
                 model: UserRole,
-                attributes: ['createAt', 'updateAt'],
+                attributes: ['createdAt', 'updatedAt'],
                 include: [Role]
             }
         ]

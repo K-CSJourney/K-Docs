@@ -25,7 +25,7 @@ class UserService {
 
     private sendVerificationEmail = async (user: User) => {
         const mail = {
-            form: "hsy449835@gmail.com",
+            from: "kbws13@163.com",
             to: user.email,
             subject: "Welcome to K-Docs",
             text: `click the following link to verify your email : http://localhost:3000/user/verify-email/${user.verificationToken}`,
@@ -35,7 +35,7 @@ class UserService {
 
     public sendPasswordResetEmail = async (user: User) => {
         const mail = {
-            from: "kuluruvineeth8623@gmail.com",
+            from: "kbws13@163.com",
             to: user.email,
             subject: "Reset your password!",
             text: `http://localhost:3000/user/reset-email/${user.passwordResetToken}`,

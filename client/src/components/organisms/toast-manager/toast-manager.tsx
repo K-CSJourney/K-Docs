@@ -1,9 +1,24 @@
-import {useContext} from "react";
-import {ToastContext} from "@/contexts/toast-context";
+import { useContext, useRef } from "react";
+import { ToastContext } from "@/contexts/toast-context";
 import useWindowSize from "@/hooks/use-window-size";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Toast from "@/components/atoms/toast";
+import ToastInterface from "@/types/interfaces/toast";
 
+
+const ToastItem = ({ toast }: { toast: ToastInterface }) => {
+    const nodeRef = useRef<HTMLDivElement>(null);
+    return (
+        <CSSTransition
+            nodeRef={nodeRef}
+            timeout={200}
+            classNames="slide-in"
+            unmountOnExit
+        >
+            <Toast ref={nodeRef} {...toast} />
+        </CSSTransition>
+    );
+};
 
 const ToastManager = () => {
     const { toasts } = useContext(ToastContext);
@@ -15,17 +30,9 @@ const ToastManager = () => {
             style={{ maxHeight: `calc(${heightStr} - 2rem)` }}
         >
             <TransitionGroup className="space-y-2">
-                {toasts.reverse().map((toast) => {
-                    return (
-                        <CSSTransition
-                            key={toast.id}
-                            timeout={200}
-                            classNames="slide-in"
-                            unmountOnExit
-                            children={<Toast {...toast} />}
-                        />
-                    );
-                })}
+                {toasts.reverse().map((toast) => (
+                    <ToastItem key={toast.id} toast={toast} />
+                ))}
             </TransitionGroup>
         </div>
     );
