@@ -1,16 +1,50 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import {BrowserRouter} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {AuthProvider} from "@/contexts/auth-context";
+import {ToastProvider} from "@/contexts/toast-context";
+import {EditorProvider} from "@/contexts/editor-context";
+import {DocumentProvider} from './contexts/document-context';
+import AuthRoute from "@/components/molecules/aurg-route";
+import Login from "@/pages/login";
+import Register from "@/pages/register";
+import VerifyEmail from "@/pages/user/verify-email";
+import Create from "@/pages/document/create";
+import Document from "@/pages/document";
 
-const root = ReactDOM.createRoot(
-    document.getElementById('root') as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>
         <BrowserRouter>
-            <App/>
+            <AuthProvider>
+                <ToastProvider>
+                    <Routes>
+                        <Route path="/" element={<h1>Home Page</h1>}></Route>
+                        <Route path="/register" element={<Register/>}/>
+                        <Route path="/login" element={<Login/>}/>
+                        <Route path="/user/verify-email/:token" element={<VerifyEmail/>}/>
+                        <Route
+                            path="/document/create"
+                            element={<AuthRoute element={<Create/>}/>}
+                        />
+                        <Route
+                            path="/document/:id"
+                            element={
+                                <AuthRoute
+                                    element={
+                                        <DocumentProvider>
+                                            <EditorProvider>
+                                                <Document/>
+                                            </EditorProvider>
+                                        </DocumentProvider>
+                                    }
+                                />
+                            }
+                        />
+                    </Routes>
+                </ToastProvider>
+            </AuthProvider>
         </BrowserRouter>
     </React.StrictMode>
 );
